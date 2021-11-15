@@ -25,33 +25,42 @@ namespace TCPServer
     public partial class MainWindow : Window
     {
         RecvBroadcst Receiver = new RecvBroadcst();
+      
         public MainWindow()
         {
             InitializeComponent();
             SendBroadcast.init();
-        }  
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            SendBroadcast.data = BitConverter.GetBytes(0xDEAD000000000000);   // DEAD is the 'unique' identifier
-            SendBroadcast.sendb();
+            SendBroadcast.data[0] = 1; // BYTE 0 = SENDER, (1= REMOTE, 0 = TV)
+            Thread t = new Thread(CheckData);
+            t.Start();
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        static void CheckData(object obj)
         {
-            while (RecvBroadcst.receivedinputcommands.Count() != 0)
+            while (true)
             {
-                ulong inputje = RecvBroadcst.receivedinputcommands.First();
-                RecvBroadcst.receivedinputcommands.Remove(inputje);                
-                Textboxinfo.AppendText(string.Format("0x{0:X}", inputje));
+                if (RecvBroadcst.receivedinputcommands.Count() != 0)
+                {
+                    ulong inputje = RecvBroadcst.receivedinputcommands.First();
+                    RecvBroadcst.receivedinputcommands.Remove(inputje);
+                    MessageBox.Show(string.Format("0x{0:X}", inputje)); // nog met een delegate werken waarschijnlijk om de data op de textboxinfo te krijgen...
+                    //Textboxinfo.AppendText(string.Format("0x{0:X}", inputje));
+                }
             }
+        }
+
+        private void btn_OnOff_Click(object sender, RoutedEventArgs e)
+        {            
+            SendBroadcast.data[1] = Convert.ToByte((sender as Button).Tag);
+            Textboxinfo.AppendText($"Sending Byte 0:{SendBroadcast.data[0]} and byte 1:{SendBroadcast.data[1]}\r\n");
+            SendBroadcast.sendb();
         }
     }
 
 
     public static class SendBroadcast
     {
-        public static byte[] data = Encoding.ASCII.GetBytes("test message");
+        public static byte[] data = new byte[2];
         public static Socket sock = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
         public static IPEndPoint iep1 = new IPEndPoint(IPAddress.Broadcast, 9050);
 
@@ -61,7 +70,7 @@ namespace TCPServer
         }
 
         public static void sendb()
-        {
+        {            
             sock.SendTo(data, iep1);
         }
 
