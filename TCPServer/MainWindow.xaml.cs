@@ -16,6 +16,7 @@ using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading;
+using System.Windows.Threading;
 
 namespace TCPServer
 {
@@ -35,24 +36,30 @@ namespace TCPServer
             t.Start();
         }
 
-        static void CheckData(object obj)
+        public void CheckData()
         {
             while (true)
             {
                 if (RecvBroadcst.receivedinputcommands.Count() != 0)
                 {
-                    ulong inputje = RecvBroadcst.receivedinputcommands.First();
-                    RecvBroadcst.receivedinputcommands.Remove(inputje);
-                    MessageBox.Show(string.Format("0x{0:X}", inputje)); // nog met een delegate werken waarschijnlijk om de data op de textboxinfo te krijgen...
-                    //Textboxinfo.AppendText(string.Format("0x{0:X}", inputje));
+                    byte[] received = RecvBroadcst.receivedinputcommands.First();
+                    RecvBroadcst.receivedinputcommands.Remove(received);
+                    //if (received[0] == 0) // 0 = TV
+                    if (received[0]==0 | received[0]==1) // only during debug to see also the commands from the remote
+                    {
+                        //var str = System.Text.Encoding.Default.GetString(received).Substring(1,received.Length-1);
+                        Dispatcher.BeginInvoke(new Action(() => {
+                            Textboxinfo.Text += $"{received[1].ToString()}{Environment.NewLine}"; //replace received[1] by str
+                        }), DispatcherPriority.SystemIdle);
+                    }
                 }
             }
         }
 
-        private void btn_OnOff_Click(object sender, RoutedEventArgs e)
+        private void btn_Remote_Click(object sender, RoutedEventArgs e)
         {            
             SendBroadcast.data[1] = Convert.ToByte((sender as Button).Tag);
-            Textboxinfo.AppendText($"Sending Byte 0:{SendBroadcast.data[0]} and byte 1:{SendBroadcast.data[1]}\r\n");
+            //Textboxinfo.AppendText($"Sending Byte 0:{SendBroadcast.data[0]} and byte 1:{SendBroadcast.data[1]}\r\n");
             SendBroadcast.sendb();
         }
     }
@@ -78,7 +85,7 @@ namespace TCPServer
 
     public class RecvBroadcst
     {
-        public static List<ulong> receivedinputcommands = new List<ulong>();
+        public static List<byte[]> receivedinputcommands = new List<byte[]>();
         public RecvBroadcst()
         {
             Thread receive = new Thread(new ThreadStart(Receivepackets));
@@ -96,9 +103,8 @@ namespace TCPServer
             byte[] data = new byte[1024];
             while (true)
             {
-                int recv = sock.ReceiveFrom(data, ref ep);                
-                ulong value = BitConverter.ToUInt64(data, 0);
-                receivedinputcommands.Add(value);        
+                int recv = sock.ReceiveFrom(data, ref ep);               
+                receivedinputcommands.Add(data);        
             }
         }
     }
