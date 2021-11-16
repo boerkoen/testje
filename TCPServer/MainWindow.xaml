@@ -30,29 +30,29 @@
         </Grid.RowDefinitions>
         
         <TextBox x:Name="Textboxinfo" Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="5" VerticalScrollBarVisibility="Visible" />
-        <Button x:Name="btn_OnOff" Content="On/off" Grid.Column="5" Grid.Row="1" FontSize ="18" Margin="3" Click="btn_OnOff_Click" Tag="0"/>
-        
-        <Button x:Name="btn_one" Content="1" Grid.Column="1" Grid.Row="2" FontSize ="18" Margin="3" Click="btn_OnOff_Click" Tag="1"/>
-        <Button x:Name="btn_two" Content="2" Grid.Column="3" Grid.Row="2" FontSize ="18" Margin="3" Click="btn_OnOff_Click" Tag="2"/>
-        <Button x:Name="btn_three" Content="3" Grid.Column="5" Grid.Row="2" FontSize ="18" Margin="3" Click="btn_OnOff_Click" Tag="3"/>
+        <Button x:Name="btn_OnOff" Content="On/off" Grid.Column="5" Grid.Row="1" FontSize ="18" Margin="3" Click="btn_Remote_Click" Tag="0"/>
 
-        <Button x:Name="btn_four" Content="4" Grid.Column="1" Grid.Row="3" FontSize ="18" Margin="3" Click="btn_OnOff_Click" Tag="4"/>
-        <Button x:Name="btn_five" Content="5" Grid.Column="3" Grid.Row="3" FontSize ="18" Margin="3" Click="btn_OnOff_Click" Tag="5"/>
-        <Button x:Name="btn_six" Content="6" Grid.Column="5" Grid.Row="3" FontSize ="18" Margin="3" Click="btn_OnOff_Click" Tag="6"/>
+        <Button x:Name="btn_one" Content="1" Grid.Column="1" Grid.Row="2" FontSize ="18" Margin="3" Click="btn_Remote_Click" Tag="1"/>
+        <Button x:Name="btn_two" Content="2" Grid.Column="3" Grid.Row="2" FontSize ="18" Margin="3" Click="btn_Remote_Click" Tag="2"/>
+        <Button x:Name="btn_three" Content="3" Grid.Column="5" Grid.Row="2" FontSize ="18" Margin="3" Click="btn_Remote_Click" Tag="3"/>
 
-        <Button x:Name="btn_seven" Content="7" Grid.Column="1" Grid.Row="4" FontSize ="18" Margin="3" Click="btn_OnOff_Click" Tag="7"/>
-        <Button x:Name="btn_eight" Content="8" Grid.Column="3" Grid.Row="4" FontSize ="18" Margin="3" Click="btn_OnOff_Click" Tag="8"/>
-        <Button x:Name="btn_nine" Content="9" Grid.Column="5" Grid.Row="4" FontSize ="18" Margin="3" Click="btn_OnOff_Click" Tag="9"/>
+        <Button x:Name="btn_four" Content="4" Grid.Column="1" Grid.Row="3" FontSize ="18" Margin="3" Click="btn_Remote_Click" Tag="4"/>
+        <Button x:Name="btn_five" Content="5" Grid.Column="3" Grid.Row="3" FontSize ="18" Margin="3" Click="btn_Remote_Click" Tag="5"/>
+        <Button x:Name="btn_six" Content="6" Grid.Column="5" Grid.Row="3" FontSize ="18" Margin="3" Click="btn_Remote_Click" Tag="6"/>
 
-        <Button x:Name="btn_source" Content="Source" Grid.Column="1" Grid.Row="5" FontSize ="18" Margin="3" Click="btn_OnOff_Click" Tag="10"/>
-        <Button x:Name="btn_zero" Content="0" Grid.Column="3" Grid.Row="5" FontSize ="18" Margin="3" Click="btn_OnOff_Click" Tag="11"/>
-        <Button x:Name="btn_settings" Content="Settings" Grid.Column="5" Grid.Row="5" FontSize ="18" Margin="3" Click="btn_OnOff_Click" Tag="12"/>
+        <Button x:Name="btn_seven" Content="7" Grid.Column="1" Grid.Row="4" FontSize ="18" Margin="3" Click="btn_Remote_Click" Tag="7"/>
+        <Button x:Name="btn_eight" Content="8" Grid.Column="3" Grid.Row="4" FontSize ="18" Margin="3" Click="btn_Remote_Click" Tag="8"/>
+        <Button x:Name="btn_nine" Content="9" Grid.Column="5" Grid.Row="4" FontSize ="18" Margin="3" Click="btn_Remote_Click" Tag="9"/>
 
-        <Button x:Name="btn_volumeup" Content="Vol. +" Grid.Column="1" Grid.Row="6" FontSize ="18" Margin="3" Click="btn_OnOff_Click" Tag="13"/>
-        <Button x:Name="btn_volumedown" Content="Vol. -" Grid.Column="5" Grid.Row="6" FontSize ="18" Margin="3" Click="btn_OnOff_Click" Tag="14"/>
+        <Button x:Name="btn_source" Content="Source" Grid.Column="1" Grid.Row="5" FontSize ="18" Margin="3" Click="btn_Remote_Click" Tag="10"/>
+        <Button x:Name="btn_zero" Content="0" Grid.Column="3" Grid.Row="5" FontSize ="18" Margin="3" Click="btn_Remote_Click" Tag="11"/>
+        <Button x:Name="btn_settings" Content="Settings" Grid.Column="5" Grid.Row="5" FontSize ="18" Margin="3" Click="btn_Remote_Click" Tag="12"/>
 
-        <Button x:Name="btn_channelup" Content="Ch. +" Grid.Column="1" Grid.Row="7" FontSize ="18" Margin="3" Click="btn_OnOff_Click" Tag="15"/>
-        <Button x:Name="btn_channeldown" Content="Ch. -" Grid.Column="5" Grid.Row="7" FontSize ="18" Margin="3" Click="btn_OnOff_Click" Tag="16"/>
+        <Button x:Name="btn_volumeup" Content="Vol. +" Grid.Column="1" Grid.Row="6" FontSize ="18" Margin="3" Click="btn_Remote_Click" Tag="13"/>
+        <Button x:Name="btn_volumedown" Content="Vol. -" Grid.Column="5" Grid.Row="6" FontSize ="18" Margin="3" Click="btn_Remote_Click" Tag="14"/>
+
+        <Button x:Name="btn_channelup" Content="Ch. +" Grid.Column="1" Grid.Row="7" FontSize ="18" Margin="3" Click="btn_Remote_Click" Tag="15"/>
+        <Button x:Name="btn_channeldown" Content="Ch. -" Grid.Column="5" Grid.Row="7" FontSize ="18" Margin="3" Click="btn_Remote_Click" Tag="16"/>
         
     </Grid>
 </Window>
