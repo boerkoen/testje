@@ -17,8 +17,9 @@ using System.Net;
 using System.Net.Sockets;
 using System.Threading;
 using System.Windows.Threading;
+using System.Data.SqlClient;
 
-namespace TCPServer
+namespace Remote
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -30,6 +31,7 @@ namespace TCPServer
         public MainWindow()
         {
             InitializeComponent();
+            radioSocket.IsChecked = true;
             SendBroadcast.init();
             SendBroadcast.data[0] = 1; // BYTE 0 = SENDER, (1= REMOTE, 0 = TV)
             Thread t = new Thread(CheckData);
@@ -57,55 +59,33 @@ namespace TCPServer
         }
 
         private void btn_Remote_Click(object sender, RoutedEventArgs e)
-        {            
-            SendBroadcast.data[1] = Convert.ToByte((sender as Button).Tag);
-            //Textboxinfo.AppendText($"Sending Byte 0:{SendBroadcast.data[0]} and byte 1:{SendBroadcast.data[1]}\r\n");
-            SendBroadcast.sendb();
-        }
-    }
-
-
-    public static class SendBroadcast
-    {
-        public static byte[] data = new byte[2];
-        public static Socket sock = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
-        public static IPEndPoint iep1 = new IPEndPoint(IPAddress.Broadcast, 9050);
-
-        public static void init()
         {
-            sock.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.Broadcast, 1);
-        }
-
-        public static void sendb()
-        {            
-            sock.SendTo(data, iep1);
-        }
-
-    }
-
-    public class RecvBroadcst
-    {
-        public static List<byte[]> receivedinputcommands = new List<byte[]>();
-        public RecvBroadcst()
-        {
-            Thread receive = new Thread(new ThreadStart(Receivepackets));
-            receive.IsBackground = true;
-            receive.Start();
-        }
-        void Receivepackets()
-        {
-            Socket sock = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
-            IPEndPoint iep = new IPEndPoint(IPAddress.Any, 9050);
-            sock.Bind(iep);
-            EndPoint ep = (EndPoint)iep;
-            Console.WriteLine("Ready to receive...");
-
-            byte[] data = new byte[1024];
-            while (true)
+            if (radioDB.IsChecked == true)
             {
-                int recv = sock.ReceiveFrom(data, ref ep);               
-                receivedinputcommands.Add(data);        
+                var query = "Insert into Commands(button) values (@button)";
+                using (var conn = new SqlConnection("Data Source=localhost; Initial Catalog=Television; User ID=sa; Password=syntrawest1234A"))
+                using (var command = new SqlCommand(query, conn))
+                {
+                    conn.Open();
+                    command.Parameters.AddWithValue("@button", Convert.ToByte((sender as Button).Tag));
+                    command.ExecuteNonQuery();
+                }
             }
+            else
+            {
+                SendBroadcast.data[1] = Convert.ToByte((sender as Button).Tag);            
+                SendBroadcast.sendb();
+            }
+
+
+
         }
+
+  
     }
+
+
+
+
+
 }
