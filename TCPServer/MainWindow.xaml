@@ -30,8 +30,8 @@
         </Grid.RowDefinitions>
         <TextBlock x:Name="textblockSocketDB" Text="  Socket   DB" Grid.Column="1" Grid.Row="1" ></TextBlock>
 
-        <RadioButton x:Name="checkSocket" Grid.Column="1" Grid.Row="1" Margin="10 20 0 0 " ></RadioButton>
-        <RadioButton x:Name="checkDB" Grid.Column="1" Grid.Row="1" Margin="50 20 0 0 "  ></RadioButton>
+        <RadioButton x:Name="radioSocket" Grid.Column="1" Grid.Row="1" Margin="10 20 0 0 " ></RadioButton>
+        <RadioButton x:Name="radioDB" Grid.Column="1" Grid.Row="1" Margin="50 20 0 0 "  ></RadioButton>
         <TextBox x:Name="Textboxinfo" Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="5" VerticalScrollBarVisibility="Visible" />
         <Button x:Name="btn_OnOff" Content="On/off" Grid.Column="5" Grid.Row="1" FontSize ="18" Margin="3" Click="btn_Remote_Click" Tag="0"/>
 
