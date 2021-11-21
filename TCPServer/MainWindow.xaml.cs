@@ -63,7 +63,8 @@ namespace Remote
             if (radioDB.IsChecked == true)
             {
                 var query = "Insert into Commands(button) values (@button)";
-                using (var conn = new SqlConnection("Data Source=localhost; Initial Catalog=Television; User ID=sa; Password=syntrawest1234A"))
+                //using (var conn = new SqlConnection("Data Source=localhost; Initial Catalog=Television; User ID=sa; Password=syntrawest1234A"))
+                using (var conn = new SqlConnection("Data Source=localhost; Initial Catalog=Television; User ID=sa; Password=1234"))
                 using (var command = new SqlCommand(query, conn))
                 {
                     conn.Open();
