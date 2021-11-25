@@ -44,16 +44,20 @@ namespace Remote
             {
                 if (RecvBroadcst.receivedinputcommands.Count() != 0)
                 {
-                    byte[] received = RecvBroadcst.receivedinputcommands.First();
+                    string received = RecvBroadcst.receivedinputcommands.First();
                     RecvBroadcst.receivedinputcommands.Remove(received);
-                    //if (received[0] == 0) // 0 = TV
-                    if (received[0]==0 | received[0]==1) // only during debug to see also the commands from the remote
-                    {
-                        //var str = System.Text.Encoding.Default.GetString(received).Substring(1,received.Length-1);
-                        Dispatcher.BeginInvoke(new Action(() => {
-                            Textboxinfo.Text += $"{received[1].ToString()}{Environment.NewLine}"; //replace received[1] by str
-                        }), DispatcherPriority.SystemIdle);
-                    }
+                    this.Dispatcher.Invoke(() => { Textboxinfo.Text = (received); });
+                    //byte[] received = RecvBroadcst.receivedinputcommands.First();
+                    //RecvBroadcst.receivedinputcommands.Remove(received);
+                    ////if (received[0] == 0) // 0 = TV
+                    //if (received[0] == 0 | received[0] == 1) // only during debug to see also the commands from the remote
+                    //{
+                    //    //var str = System.Text.Encoding.Default.GetString(received).Substring(1,received.Length-1);
+                    //    Dispatcher.BeginInvoke(new Action(() =>
+                    //    {
+                    //        Textboxinfo.Text += $"{received[1].ToString()}{Environment.NewLine}"; //replace received[1] by str
+                    //    }), DispatcherPriority.SystemIdle);
+                    //}
                 }
             }
         }
