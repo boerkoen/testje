@@ -12,7 +12,7 @@ namespace Remote
     {
         public static byte[] data = new byte[2];
         public static Socket sock = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
-        public static IPEndPoint iep1 = new IPEndPoint(IPAddress.Broadcast, 9050);
+        public static IPEndPoint iep1 = new IPEndPoint(IPAddress.Broadcast, 9051);
 
         public static void init()
         {
