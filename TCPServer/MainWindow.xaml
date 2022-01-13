@@ -6,12 +6,13 @@
         xmlns:local="clr-namespace:Remote"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="300">
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"/>
             <ColumnDefinition Width="80"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="80"/>            
+            <ColumnDefinition Width="80"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="80"/>
             <ColumnDefinition Width="20"/>
@@ -24,7 +25,7 @@
             <RowDefinition Height="40"/>
             <RowDefinition Height="40"/>
             <RowDefinition Height="40"/>
-            <RowDefinition Height="40"/>            
+            <RowDefinition Height="40"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
@@ -56,6 +57,7 @@
 
         <Button x:Name="btn_channelup" Content="Ch. +" Grid.Column="1" Grid.Row="7" FontSize ="18" Margin="3" Click="btn_Remote_Click" Tag="13"/>
         <Button x:Name="btn_channeldown" Content="Ch. -" Grid.Column="5" Grid.Row="7" FontSize ="18" Margin="3" Click="btn_Remote_Click" Tag="14"/>
-        
+
     </Grid>
+    </ScrollViewer>
 </Window>
