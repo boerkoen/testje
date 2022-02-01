@@ -5,16 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Remote"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="300">
+        Title="MainWindow" Height="450" Width="300" MinWidth="300" MinHeight="450" MaxHeight="450" >
     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"/>
-            <ColumnDefinition Width="80"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="80"/>
+            <ColumnDefinition Width="10"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="80"/>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="20"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
